@@ -10,9 +10,12 @@ function formatChatGPTAnswer() {
       newElement.innerHTML = element.innerHTML;
       
       // 使用更严格的正则表达式来移除<解答>和<反思>标签及其内容
+      newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;思考&gt;[\s\S]*?&lt;\/思考&gt;\s*(?:<\/p>)?/g, '');
       newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;解答&gt;[\s\S]*?&lt;\/解答&gt;\s*(?:<\/p>)?/g, '');
       newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;反思&gt;[\s\S]*?&lt;\/反思&gt;\s*(?:<\/p>)?/g, '');
-      newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;思考&gt;[\s\S]*?&lt;\/思考&gt;\s*(?:<\/p>)?/g, '');
+      newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;thought&gt;[\s\S]*?&lt;\/thought&gt;\s*(?:<\/p>)?/g, '');
+      newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;answer&gt;[\s\S]*?&lt;\/answer&gt;\s*(?:<\/p>)?/g, '');
+      newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;reflection&gt;[\s\S]*?&lt;\/reflection&gt;\s*(?:<\/p>)?/g, '');
       
       // 保留<output>标签内的内容，但移除标签本身
       newElement.innerHTML = newElement.innerHTML.replace(/(?:<p>)?\s*&lt;output&gt;([\s\S]*?)&lt;\/output&gt;\s*(?:<\/p>)?/g, '$1');
